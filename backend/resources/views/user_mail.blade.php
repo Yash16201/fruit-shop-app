@@ -1,0 +1,1 @@
+<h1>Hello user! you are registered sucessfully in Fruit Shopee</h1>
