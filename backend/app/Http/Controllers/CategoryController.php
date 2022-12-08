@@ -28,4 +28,8 @@ class CategoryController extends Controller
         $response = $this->categoryRepository->fetch();
         return $response;
     }
+    public function fetchById(Request $request){
+        $response = $this->categoryRepository->fetchById($request);
+        return $response;
+    }
 }

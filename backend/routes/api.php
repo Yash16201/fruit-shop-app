@@ -26,7 +26,8 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('category', 'fetch');
     Route::post('addcategory', 'add');
     Route::post('editcategory', 'edit');
-    Route::post('deletecategory', 'delete');  
+    Route::post('deletecategory', 'delete');
+    Route::post('categorybyid', 'fetchById');  
 }); 
 
 Route::controller(OrderController::class)->group(function () {

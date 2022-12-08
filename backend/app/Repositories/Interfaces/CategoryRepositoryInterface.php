@@ -8,4 +8,5 @@ interface CategoryRepositoryInterface{
     public function edit($request);
     public function delete($request);
     public function fetch();
+    public function fetchById($request);
 }

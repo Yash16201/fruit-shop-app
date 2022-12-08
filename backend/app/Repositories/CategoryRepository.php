@@ -82,6 +82,21 @@ class CategoryRepository implements CategoryRepositoryInterface{
             ]); 
         }
     }
+    public function fetchById($request){
+        try{
+            $category = Category::particular($request->id)->get();
+            return response()->json([
+                'status' => 'success',
+                'categories' => $category,
+                'message' => 'Category fetched successfully'
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                'status' => 'failed',
+                'message' => $e->getMessage()
+            ]); 
+        }
+    }
 
 }
 

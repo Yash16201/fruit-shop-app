@@ -17,6 +17,10 @@ class Category extends Model
     {
         return $query->where('status', 'Active');
     }
+    public function scopeParticular($query,$value)
+    {
+        return $query->where('id',$value)->where('status', 'Active');
+    }
     public function product(){
         return $this->hasOne(Product::class, 'category_id', 'id');
     }
