@@ -33,7 +33,7 @@ const Home = () => {
                     </p>
                     </div>
                     <div className="img-box">
-                    <img src="http://localhost:3000/external/images/shop-img.jpg" alt=""/>
+                    <img src={ process.env.PUBLIC_URL + '/external/images/shop-img.jpg'} alt=""/>
                     </div>
                     <div className="btn-box">
                     <a href="/">
@@ -48,7 +48,7 @@ const Home = () => {
             <div className="row">
                 <div className="col-md-6 px-0">
                 <div className="img-box">
-                    <img src="http://localhost:3000/external/images/about-img.jpg" alt=""/>
+                    <img src={ process.env.PUBLIC_URL + '/external/images/about-img.jpg'} alt=""/>
                 </div>
                 </div>
                 <div className="col-md-5">
@@ -88,18 +88,19 @@ const Home = () => {
           <div className="carousel-item active">
             <div className="client_container layout_padding-top">
               <div className="img-box">
-                <img src="http://localhost:3000/external/images/client-img.png" alt=""/>
+                <img src={ process.env.PUBLIC_URL + '/external/images/client-img.png'} alt=""/>
               </div>
               <div className="detail-box">
                 <h5>
                   Jone Mark
                 </h5>
                 <p>
-                  <img src="http://localhost:3000/external/images/left-quote.png" alt=""/>
+                  <img src={ process.env.PUBLIC_URL + '/external/images/left-quote.jpg'} alt=""/>
+                  
                   <span>
                     Lorem ipsum dolor sit amet,
                   </span>
-                  <img src="http://localhost:3000/external/images/right-quote.png" alt=""/> <br/>
+                  <img src={ process.env.PUBLIC_URL + '/external/images/right-quote.jpg'} alt=""/> <br/>
                   consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                   veniam, quis nostrud exercitation ullamco laboris ut aliquip ex ea commodo
                   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse

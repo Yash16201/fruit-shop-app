@@ -25,9 +25,9 @@ class ProductRepository implements ProductRepositoryInterface{
                     $ProductDetails = new ProductDetails;
                     $ProductDetails->product_id = $productid;
                     $ProductDetails->description = $request->description;
-                    $ProductDetails->image = $file;
+                    $ProductDetails->image = $filename;
                     $ProductDetails->price = $request->price;
-                    $file-> move(public_path('public/Image'), $filename);
+                    $file-> move(public_path('Image'), $filename);
                     $ProductDetails->save();
                 }else{
                     $ProductDetails = new ProductDetails;

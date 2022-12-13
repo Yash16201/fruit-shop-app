@@ -9,7 +9,7 @@ const About = () => {
             <div className="row">
                 <div className="col-md-6 px-0">
                 <div className="img-box">
-                    <img src="http://localhost:3000/external/images/about.jpg" alt=""/>
+                    <img src={ process.env.PUBLIC_URL + '/external/images/about.jpg'} alt=""/>
                 </div>
                 </div>
                 <div className="col-md-5">

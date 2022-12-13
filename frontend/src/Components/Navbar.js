@@ -22,17 +22,17 @@ const Navbar = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div className="img-box">
-              <img src="http://localhost:3000/external/images/slider-img.jpg" alt=""/>
+              <img src={ process.env.PUBLIC_URL + '/external/images/slider-img.jpg'} alt=""/>
             </div>
           </div>
           <div className="carousel-item">
             <div className="img-box">
-              <img src="http://localhost:3000/external/images/slider-img.jpg" alt=""/>
+              <img src={ process.env.PUBLIC_URL + '/external/images/slider-img.jpg'} alt=""/>
             </div>
           </div>
           <div className="carousel-item">
             <div className="img-box">
-              <img src="http://localhost:3000/external/images/slider-img.jpg" alt=""/>
+              <img src={ process.env.PUBLIC_URL + '/external/images/slider-img.jpg'} alt=""/>
             </div>
           </div>
         </div>
