@@ -16,6 +16,9 @@ class Order extends Model
         'delivery_charge',
         'totalwithtax'   
     ];
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
     public function detail(){
         return $this->hasMany(OrderDetails::class, 'order_id', 'id');
     }

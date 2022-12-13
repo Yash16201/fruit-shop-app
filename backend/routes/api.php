@@ -34,6 +34,7 @@ Route::controller(OrderController::class)->group(function () {
     Route::post('addorder', 'add'); 
     Route::post('myorders', 'getOrders');
     Route::post('track', 'trackOrder');
+    Route::get('orders', 'getAllOrders');
 }); 
 
 Route::controller(ProductController::class)->group(function () {

@@ -87,6 +87,22 @@ class OrderRepository implements OrderRepositoryInterface{
             ]); 
         }
     }
+
+    public function getAllOrders(){
+        try{
+            $Orders = Order::with('detail','dispatch','payment')->get();
+            return response()->json([
+                'status' => 'success',
+                'Orders' => $Orders,
+                'message' => 'Orders fetched successfully'
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'No orders found'
+            ]); 
+        }
+    }
     public function trackOrder($request){
         try{
             // $Orders = Order::track($request->id,$request->user_id)->with('detail')->get();
