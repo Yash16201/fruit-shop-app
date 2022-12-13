@@ -69,17 +69,25 @@ class ProductRepository implements ProductRepositoryInterface{
                         'price' => $request->price
                     ]);
                     $file-> move(public_path('public/Image'), $filename);
+                    if($product_details){
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => 'Product updated successfully'
+                        ]);
+                    }
                 }else{
                     $product_details = ProductDetails::where('product_id','=',$request->id)->update([
                         'description' => $request->description,
                         'price' => $request->price
                     ]);
+                    if($product_details){
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => 'Product updated successfully'
+                        ]);
+                    }
                 }
             }
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Product updated successfully'
-            ]);
         }catch(\Exception $e){
             return response()->json([
                 'status' => 'failed',
