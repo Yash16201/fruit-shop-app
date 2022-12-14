@@ -10,6 +10,8 @@ use App\Repositories\ProductRepository;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use App\Repositories\OrderRepository;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
+use App\Repositories\UserRepository;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -36,6 +38,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OrderRepositoryInterface::class, 
             OrderRepository::class,
+        );
+        $this->app->bind(
+            UserRepositoryInterface::class, 
+            UserRepository::class,
         );
         
     }

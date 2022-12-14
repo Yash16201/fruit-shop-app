@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserManage;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::post('login', [AuthController::class,'login']);
 Route::post('register', [AuthController::class,'register']);
 Route::post('logout', [AuthController::class,'logout']);
 
+Route::controller(UserManage::class)->group(function () {
+    Route::get('users', 'get');
+});
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('category', 'fetch');
