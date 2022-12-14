@@ -22,7 +22,7 @@ const TrackOrder = () => {
     return (
     <>
         <div className='container my-5'>
-        <h2>Order #{id-10}-{id*id}-{id*200}</h2>
+        <h2>Order #{id-10}-{id*id+id-id*2}-{id*200}</h2>
         <br/>
         <h3>Product Details</h3>
         <table className='table mt-5'>
