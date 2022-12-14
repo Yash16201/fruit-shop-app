@@ -119,4 +119,37 @@ class OrderRepository implements OrderRepositoryInterface{
             ]); 
         }
     }
+    public function updateStatus($request){
+        try{
+            $Orders = Order::where('id', $request->id)->update([
+                'status' => $request->status
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Status updated successfully'
+            ]);
+            
+            
+        }catch(\Exception $e){
+            return response()->json([
+                'status' => 'failed',
+                'message' => $e->getMessage()
+            ]); 
+        }
+    }
+    public function updatePaymentStatus($request){
+        try{
+            $Orders = PaymentDetails::where('order_id', $request->id)->update([
+                'payment_status' => $request->status
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Payment status updated successfully'
+            ]);
+            // $Orders = Order::track($request->id,$request->user_id)->with('detail')->get();
+            
+        }catch(\Exception $e){
+             
+        }
+    }
 }

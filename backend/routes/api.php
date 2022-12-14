@@ -35,6 +35,8 @@ Route::controller(OrderController::class)->group(function () {
     Route::post('myorders', 'getOrders');
     Route::post('track', 'trackOrder');
     Route::get('orders', 'getAllOrders');
+    Route::post('updateorderstatus', 'updateStatus');
+    Route::post('updatepaymentstatus', 'updatePaymentStatus');
 }); 
 
 Route::controller(ProductController::class)->group(function () {

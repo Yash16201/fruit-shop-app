@@ -8,4 +8,6 @@ interface OrderRepositoryInterface{
     public function getOrders($request);
     public function getAllOrders();
     public function trackOrder($request);
+    public function updateStatus($request);
+    public function updatePaymentStatus($request);
 }

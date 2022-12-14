@@ -27,4 +27,12 @@ class OrderController extends Controller
         $response = $this->orderRepository->trackOrder($request);
         return $response;
     }
+    public function updateStatus(Request $request){
+        $response = $this->orderRepository->updateStatus($request);
+        return $response;
+    }
+    public function updatePaymentStatus(Request $request){
+        $response = $this->orderRepository->updatePaymentStatus($request);
+        return $response;
+    }
 }
