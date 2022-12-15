@@ -9,7 +9,8 @@ use App\Repositories\Interfaces\ProductRepositoryInterface;
 class ProductRepository implements ProductRepositoryInterface{
     public function add($request){
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'price' => 'required|numeric'
         ]); 
         try{
             $product = new Product;
@@ -52,7 +53,7 @@ class ProductRepository implements ProductRepositoryInterface{
     public function edit($request){
         $request->validate([
             'name' => 'required',
-            'price' => 'required'
+            'price' => 'required|numeric'
         ]); 
         try{
             $product = Product::where('id','=',$request->id)->update([

@@ -13,11 +13,11 @@ class OrderRepository implements OrderRepositoryInterface{
         $request->validate([
             'full_name' => 'required',
             'email' => 'required',
-            'contact' => 'required',
+            'contact' => 'required|numeric',
             'address' => 'required',
             'landmark' => 'required',
             'city' => 'required',
-            'zipcode' => 'required',
+            'zipcode' => 'required|numeric',
             'state' => 'required',
             'country' => 'required',
         ]);

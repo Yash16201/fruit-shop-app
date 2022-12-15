@@ -39,13 +39,13 @@ class AuthRepository implements AuthRepositoryInterface {
     public function register($request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required|',
-            'contact' => 'required',
+            'email' => 'required',
+            'contact' => 'required|numeric',
             'gender' => 'required',
             'address' => 'required',
             'landmark' => 'required',
             'city' => 'required',
-            'zipcode' => 'required',
+            'zipcode' => 'required|numeric',
             'state' => 'required',
             'country' => 'required',
             'password' => 'required',
