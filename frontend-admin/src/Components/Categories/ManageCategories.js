@@ -43,7 +43,7 @@ const ManageCategories = () => {
                             {
                                 category.length > 0 && category.slice(pagevisited, pagevisited + CategoriesPerPage).map((row,key) =>{
                                     return(
-                                        <tr key={row.id}>
+                                    <tr key={row.id}>
                                         <td width="4%">{key+1}</td>
                                         <td width="15%">{row.name}</td>
                                         <td width="40%">{row.description}</td>
