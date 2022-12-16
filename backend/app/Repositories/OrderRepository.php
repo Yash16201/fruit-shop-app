@@ -8,9 +8,10 @@ use App\Models\DispatchDetails;
 use App\Models\PaymentDetails;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Events\OrderPlaced;
+use Illuminate\Support\Facades\Validator;
 class OrderRepository implements OrderRepositoryInterface{
-    public function add($request){
-        $request->validate([
+    public function validateOrder($request){
+        $Validator = Validator::make($request->all(),[
             'full_name' => 'required',
             'email' => 'required',
             'contact' => 'required|numeric',
@@ -21,7 +22,19 @@ class OrderRepository implements OrderRepositoryInterface{
             'state' => 'required',
             'country' => 'required',
         ]);
-
+        if($Validator->fails()){
+            return response()->json([
+                'status'=>422,
+                'errors'=>$Validator->messages()
+            ]);
+        }else {
+            return response()->json([
+                'status'=>200,
+                'message'=>"Done"
+            ]);
+        }
+    }
+    public function add($request){
         try{
             $Order = Order::create([
                 'user_id' => $request->user_id,
@@ -54,7 +67,10 @@ class OrderRepository implements OrderRepositoryInterface{
                 ]);  
 
                 $Payment = PaymentDetails::create([
-                    'order_id' => $Order->id
+                    'order_id' => $Order->id,
+                    'payment_type' => $request->payment_type,
+                    'payment_id' => $request->payment_id,
+                    'payment_status' => $request->payment_status
                 ],event(new OrderPlaced($request->email)));
 
                 if($Payment){
@@ -63,7 +79,7 @@ class OrderRepository implements OrderRepositoryInterface{
                         'message' => 'Ordered successfully',
                     ]);
                 }         
-            }
+            } 
         }catch(\Exception $e){
             return response()->json([
                 'status' => 'failed',

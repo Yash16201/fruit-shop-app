@@ -4,6 +4,7 @@ namespace App\Repositories\Interfaces;
 
 
 interface OrderRepositoryInterface{
+    public function validateOrder($request);
     public function add($request);
     public function getOrders($request);
     public function getAllOrders();

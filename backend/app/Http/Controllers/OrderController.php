@@ -11,6 +11,10 @@ class OrderController extends Controller
     {
         $this->orderRepository = $orderRepository;
     }
+    public function validateOrder(Request $request){
+        $response = $this->orderRepository->validateOrder($request);
+        return $response;
+    }
     public function add(Request $request){
         $response = $this->orderRepository->add($request);
         return $response;

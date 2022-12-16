@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch,useSelector } from "react-redux";
-import { addOrder } from "../redux/order/slices/order";
+import { addOrder, validate } from "../redux/order/slices/order";
 import { afterPayment } from "../redux/cart/slices/cart";
+import { toast } from 'react-toastify';
 
 const Buy = () => {
     const navigate = useNavigate();
     const  user  = JSON.parse(sessionStorage.getItem('user'));
     const { message } = useSelector((state) => state.message)
+    const { validationstatus } = useSelector((state) => state.order)
     const { cartItems,cartTotalAmount } = useSelector((state) => state.cart)
     const { isOrdered } = useSelector(state => state.order);
     const tax = cartTotalAmount * 5 / 100;
@@ -24,6 +26,73 @@ const Buy = () => {
     const [State, setState] = useState(user.state)
     const [Country, setCountry] = useState(user.country)
     const Details = [];
+    const handlePayment = (e) =>{
+        if(e.target.value === 'razorpay'){
+            const data = new FormData();
+            data.append('user_id',user.id);
+            data.append('total_products_amount',cartTotalAmount);
+            data.append('tax',tax);
+            data.append('delivery_charge',DeliveryCharge);
+            data.append('totalwithtax',totalAmountToPay);
+            data.append('Details',JSON.stringify(cartItems));
+            data.append('full_name',Name);
+            data.append('email', Email);
+            data.append('contact', Contact);
+            data.append('address', Address);
+            data.append('landmark',Landmark);
+            data.append('city', City);
+            data.append('zipcode', Zipcode);
+            data.append('state', State);
+            data.append('country', Country);
+            dispatch(validate(data))
+            if(validationstatus == "200"){
+                var options = {
+                    "key": "rzp_test_koiBMTKlc55ZvM", // Enter the Key ID generated from the Dashboard
+                    "amount": totalAmountToPay * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Fruitshopee",
+                    "description": "Order Transaction",
+                    "handler": function(response){
+                        var Transaction_id = response.razorpay_payment_id;
+                        var status = response._silent;
+                        if(!status){
+                            data.append('payment_type','razorpay')
+                            data.append('payment_id',Transaction_id)
+                            data.append('payment_status','paid')
+                            dispatch(addOrder(data))
+                            .unwrap()
+                            .then(() => {
+                                dispatch(afterPayment())
+                                navigate("/");
+                                window.location.reload();
+                            })
+                            .catch(() => {
+                                console.log('error');
+                            });
+                        }else{
+                            toast.error(`Payment failed please try again`,{
+                                position:"top-right",
+                            })
+                        }
+                        
+                    },
+                    "prefill": {
+                        "name": Name,
+                        "email": Email,
+                        "contact": Contact
+                    },
+                    "notes": {
+                        "address": Address
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new window.Razorpay(options);
+                rzp1.open();
+            }    
+        }
+    }
     const handlesubmit = (e) =>{
         e.preventDefault();
         cartItems.forEach((item) => console.log(item))
@@ -35,7 +104,6 @@ const Buy = () => {
         data.append('delivery_charge',DeliveryCharge);
         data.append('totalwithtax',totalAmountToPay);
         data.append('Details',JSON.stringify(cartItems));
-        // cartItems.forEach((item) => data.append("Details[]", item))
         data.append('full_name',Name);
         data.append('email', Email);
         data.append('contact', Contact);
@@ -45,18 +113,23 @@ const Buy = () => {
         data.append('zipcode', Zipcode);
         data.append('state', State);
         data.append('country', Country);
+        data.append('payment_type','cod');
+        data.append('payment_status','unpaid');
         // dispatch(addOrder(user_id,cartTotalAmount,tax,DeliveryCharge,totalAmountToPay,cartItems,Name,Email,Contact,Address,Landmark,City,Zipcode,State,Country)
         // )
-        dispatch(addOrder(data))
-        .unwrap()
-        .then(() => {
-            dispatch(afterPayment())
-            navigate("/");
-            window.location.reload();
-        })
-        .catch(() => {
-            console.log('error');
-        });
+        dispatch(validate(data))
+        if(validationstatus == "200"){
+            dispatch(addOrder(data))
+            .unwrap()
+            .then(() => {
+                dispatch(afterPayment())
+                navigate("/");
+                window.location.reload();
+            })
+            .catch(() => {
+                console.log('error');
+            });
+        }
     }
   return (
     <div className='container mt-5'>
@@ -149,9 +222,10 @@ const Buy = () => {
                         <div className='col-md-12'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h5 class="card-title">Payment Type</h5>
-                                <select className='form-select' name="gender">
-                                    <option value="Male" selected>Cash On Delivery</option>
+                                <h5 className="card-title">Payment Type</h5>
+                                <select className='form-select' name="payment_module" onChange={(e)=>handlePayment(e)}>
+                                    <option value="cod">Cash On Delivery</option>
+                                    <option value="razorpay">Razorpay</option>
                                 </select>
                             </div>
                             </div>

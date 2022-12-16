@@ -35,6 +35,7 @@ Route::controller(CategoryController::class)->group(function () {
 }); 
 
 Route::controller(OrderController::class)->group(function () {
+    Route::post('validate', 'validateOrder'); 
     Route::post('addorder', 'add'); 
     Route::post('myorders', 'getOrders');
     Route::post('track', 'trackOrder');
