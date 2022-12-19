@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch,useSelector } from "react-redux";
 import { addOrder, validate } from "../redux/order/slices/order";
-import { afterPayment } from "../redux/cart/slices/cart";
+import { afterPayment,getTotal } from "../redux/cart/slices/cart";
 import { toast } from 'react-toastify';
 
 const Buy = () => {
@@ -26,6 +26,9 @@ const Buy = () => {
     const [State, setState] = useState(user.state)
     const [Country, setCountry] = useState(user.country)
     const Details = [];
+    useEffect(() => {
+        dispatch(getTotal())
+    })
     const handlePayment = (e) =>{
         if(e.target.value === 'razorpay'){
             const data = new FormData();
@@ -198,7 +201,7 @@ const Buy = () => {
                                             <td width="100%"><b>Item Total</b></td>
                                             <td width="90%"><b>₹{cartTotalAmount}</b></td>
                                         </tr>
-                                        <tr>
+                                            <tr>
                                             <td width="100%"><b>Tax Total</b></td>
                                             <td width="90%"><b>₹{tax}</b></td>
                                         </tr>
