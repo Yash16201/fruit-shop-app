@@ -26,6 +26,7 @@ const Buy = () => {
     const [Country, setCountry] = useState(user.country)
     useEffect(() => {
         dispatch(getTotal())
+        //eslint-disable-next-line
     })
     const handlePayment = (e) =>{
         if(e.target.value === 'razorpay'){
@@ -191,7 +192,7 @@ const Buy = () => {
                     </div>
                     <div className='row my-3'>
                         <div className='col-md-12'>
-                        <div className='card'>
+                        <div className='card' style={{backgroundColor:"#f89e12"}}>
                             <div className='card-body'>
                                 <table>
                                     <tbody>
@@ -221,10 +222,10 @@ const Buy = () => {
                     </div>
                     <div className='row my-3'>
                         <div className='col-md-12'>
-                        <div className='card'>
+                        <div className='card' style={{backgroundColor:"#f89e12"}}>
                             <div className='card-body'>
                                 <h5 className="card-title">Payment Type</h5>
-                                <select className='form-select' name="payment_module" onChange={(e)=>handlePayment(e)}>
+                                <select className='form-select'  name="payment_module" onChange={(e)=>handlePayment(e)}>
                                     <option value="cod">Cash On Delivery</option>
                                     <option value="razorpay">Razorpay</option>
                                 </select>
