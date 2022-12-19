@@ -11,7 +11,6 @@ const Buy = () => {
     const { message } = useSelector((state) => state.message)
     const { validationstatus } = useSelector((state) => state.order)
     const { cartItems,cartTotalAmount } = useSelector((state) => state.cart)
-    const { isOrdered } = useSelector(state => state.order);
     const tax = cartTotalAmount * 5 / 100;
     const DeliveryCharge = cartTotalAmount * 10 / 100;
     const totalAmountToPay = cartTotalAmount + tax + DeliveryCharge;
@@ -25,7 +24,6 @@ const Buy = () => {
     const [Zipcode, setZipcode] = useState(user.zipcode)
     const [State, setState] = useState(user.state)
     const [Country, setCountry] = useState(user.country)
-    const Details = [];
     useEffect(() => {
         dispatch(getTotal())
     })
@@ -48,7 +46,7 @@ const Buy = () => {
             data.append('state', State);
             data.append('country', Country);
             dispatch(validate(data))
-            if(validationstatus == "200"){
+            if(validationstatus === "200"){
                 var options = {
                     "key": "rzp_test_koiBMTKlc55ZvM", // Enter the Key ID generated from the Dashboard
                     "amount": totalAmountToPay * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -121,7 +119,7 @@ const Buy = () => {
         // dispatch(addOrder(user_id,cartTotalAmount,tax,DeliveryCharge,totalAmountToPay,cartItems,Name,Email,Contact,Address,Landmark,City,Zipcode,State,Country)
         // )
         dispatch(validate(data))
-        if(validationstatus == "200"){
+        if(validationstatus === "200"){
             dispatch(addOrder(data))
             .unwrap()
             .then(() => {
