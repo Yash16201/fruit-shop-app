@@ -46,7 +46,7 @@ const Buy = () => {
             data.append('state', State);
             data.append('country', Country);
             dispatch(validate(data))
-            if(validationstatus === "200"){
+            if(validationstatus == "200"){
                 var options = {
                     "key": "rzp_test_koiBMTKlc55ZvM", // Enter the Key ID generated from the Dashboard
                     "amount": totalAmountToPay * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
