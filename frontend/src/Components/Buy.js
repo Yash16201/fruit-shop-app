@@ -98,7 +98,6 @@ const Buy = () => {
     const handlesubmit = (e) =>{
         e.preventDefault();
         cartItems.forEach((item) => console.log(item))
-        console.log();
         const data = new FormData();
         data.append('user_id',user.id);
         data.append('total_products_amount',cartTotalAmount);
@@ -117,8 +116,6 @@ const Buy = () => {
         data.append('country', Country);
         data.append('payment_type','cod');
         data.append('payment_status','unpaid');
-        // dispatch(addOrder(user_id,cartTotalAmount,tax,DeliveryCharge,totalAmountToPay,cartItems,Name,Email,Contact,Address,Landmark,City,Zipcode,State,Country)
-        // )
         dispatch(validate(data))
         if(validationstatus === "200"){
             dispatch(addOrder(data))
