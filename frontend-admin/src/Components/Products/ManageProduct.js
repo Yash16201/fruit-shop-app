@@ -13,11 +13,6 @@ const ManageProduct = () => {
   useEffect(()=>{
     fetchData()
   },[fetchData])
-  const handleDelete = (id) =>{
-    // dispatch(deleteproduct(id)).then(()=>{
-    //     dispatch(fetch())
-    // })
-  }
   return (
     <div className="container-fluid pt-4 px-4">
         <div className="row g-4">

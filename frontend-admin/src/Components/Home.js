@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 import NumberData from './NumberData'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory } from '../redux/category/slices/category';
 import { get } from '../redux/order/slices/order';
@@ -11,10 +10,10 @@ import PieChart from './Charts and Graphs/PieChart';
 import AreaChart from './Charts and Graphs/AreaChart';
 const Home = () => {
     const dispatch = useDispatch()
-    const { user } = useSelector((state) => state.user)
-    const { category } = useSelector((state) => state.category)
+    // const { user } = useSelector((state) => state.user)
+    // const { category } = useSelector((state) => state.category)
     const { product } = useSelector((state)=> state.product)
-    const { order } = useSelector((state) => state.order)
+    // const { order } = useSelector((state) => state.order)
   
     const fetchData = useCallback(() => {
       dispatch(get())

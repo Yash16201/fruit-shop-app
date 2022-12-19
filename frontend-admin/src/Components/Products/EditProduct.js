@@ -10,10 +10,12 @@ const EditProduct = () => {
   const { productbyid } = useSelector((state) => state.product);
   const fetchData = useCallback(() => {
     dispatch(fetchbyid(id))
+    //eslint-disable-next-line
   }, [dispatch])
 
   useEffect(() => {
     fetchData() 
+    //eslint-disable-next-line
   }, [fetchData])
   
   return (

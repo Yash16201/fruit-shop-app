@@ -1,6 +1,6 @@
-import React, {useState,useCallback,useEffect} from 'react'
+import React, {useCallback,useEffect} from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchById,editCategory } from "../../redux/category/slices/category"
+import { fetchById } from "../../redux/category/slices/category"
 import { useSelector, useDispatch } from "react-redux";
 import EditCategoryForm from './EditCategoryForm';
 
@@ -10,6 +10,7 @@ const EditCategory = () => {
   const { category } = useSelector((state) => state.category);
   const fetchData = useCallback(() => {
     dispatch(fetchById(id))
+    //eslint-disable-next-line
   }, [dispatch])
 
   useEffect(() => {

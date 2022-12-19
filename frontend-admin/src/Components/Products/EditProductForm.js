@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editCategory, fetchCategory } from '../../redux/category/slices/category';
+import { fetchCategory } from '../../redux/category/slices/category';
 import { edit } from '../../redux/products/slices/product';
 
 const EditProductForm = (props) => {
@@ -42,7 +42,7 @@ const EditProductForm = (props) => {
   const handleImage = (e) =>{
     setImage(e.target.files[0])
     var reader = new FileReader()
-    var url = reader.readAsDataURL(e.target.files[0])
+    // var url = reader.readAsDataURL(e.target.files[0])
 
     reader.onloadend = () => {
         setImgSrc(reader.result)
@@ -78,7 +78,7 @@ const EditProductForm = (props) => {
                     <div className="mb-3">
                         <label htmlFor="product price" className="form-label">Image</label>
                         <input className="form-control bg-dark" type="file" id="formFile" onChange={(e)=>{ handleImage(e) }}></input>
-                        <img src={ImgSrc} className="my-2"/>
+                        <img src={ImgSrc} className="my-2" alt="product"/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="product price" className="form-label">Price</label>

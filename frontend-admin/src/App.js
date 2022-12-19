@@ -2,7 +2,7 @@ import './App.css';
 import Home from './Components/Home';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import AddCategory from './Components/Categories/AddCategory';
 import ManageCategories from './Components/Categories/ManageCategories';
 import EditCategory from './Components/Categories/EditCategory';
@@ -16,7 +16,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const Admin = sessionStorage.getItem("admin");
   if(!Admin){
     console.log('notlogged');
