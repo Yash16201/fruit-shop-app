@@ -54,17 +54,4 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('deleteproduct', 'delete');  
 }); 
 
-// Route::controller(AuthController::class)->group(function () {
-// Route::group(['middleware'=>'api'],function(){
-//     Route::post('logout', [AuthController::class,'logout']);
-//     Route::post('refresh', [AuthController::class,'refresh']);
-//     Route::post('me', [AuthController::class,'me']);
-//     Route::post('myblogs', [BlogController::class,'index']);
-//     Route::post('viewblog', [BlogController::class,'show']);
-//     Route::post('editblog', [BlogController::class,'update']);
-//     Route::post('deleteblog', [BlogController::class,'softdelete']);
-//     Route::post('searchlive', [BlogController::class,'searchlive']);
-//     Route::post('postblog', [BlogController::class,'create']);
-// });
-
 
