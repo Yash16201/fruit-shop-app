@@ -165,7 +165,10 @@ class OrderRepository implements OrderRepositoryInterface{
             // $Orders = Order::track($request->id,$request->user_id)->with('detail')->get();
             
         }catch(\Exception $e){
-             
+            return response()->json([
+                'status' => 'failed',
+                'message' => $e->getMessage()
+            ]);  
         }
     }
 }
